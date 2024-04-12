@@ -41,6 +41,8 @@ export const updateTask = async (req, res, next) => {
 
     if (!task) return next(new ErrorHandler("Task not found", 404));
 
+    const {description} = req.body;
+    task.description = description;
     task.isCompleted = !task.isCompleted;
     await task.save();
 
